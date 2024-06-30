@@ -25,8 +25,8 @@ private:
     */
 
     // ЗАполняет поле цифрами по правилам игры
-    void fillNumbers(Board& board);
+    void fillNumbers(Board& board) const;
     // Разбивает поле на отдельные блоки
-    void createCages(Board& board);
+    void createCages(Board& board) const;
 
 };

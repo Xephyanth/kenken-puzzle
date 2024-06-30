@@ -24,6 +24,8 @@ int Board::getSize() const { return b_size_; }
 
 void Board::setValue(int row, int col, int value) {
     board_[row][col] = value;
+
+    //displayBoard();
 }
 
 int Board::getValue(int row, int col) const {
