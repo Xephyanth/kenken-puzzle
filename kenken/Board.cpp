@@ -16,6 +16,10 @@ Board::Board() : board_(3, std::vector<int>(3, 0)) {
 // Конструктор
 Board::Board(int size = 3) : b_size_(size), board_(size, std::vector<int>(size, 0)) {}
 
+void Board::swap(std::vector<std::vector<int>>& other) {
+    board_.swap(other);
+}
+
 /*
 * Методы
 */

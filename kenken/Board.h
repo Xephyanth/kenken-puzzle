@@ -26,6 +26,10 @@ public:
 
     Board(int size); // С параметром по умолчанию - размер поля
 
+    /**/
+
+    void swap(std::vector<std::vector<int>>& other);
+
     /*
     * Методы
     */

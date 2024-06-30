@@ -45,12 +45,8 @@ void FieldGenerator::fillNumbers(Board& board) const {
         }
     }
 
-    // Заполняем board
-    for (int row = 0; row < brd_size; ++row) {
-        for (int col = 0; col < brd_size; ++col) {
-            board.setValue(row, col, grid[row][col]);
-        }
-    }
+    // Обмениваем содержимое board с grid
+    board.swap(grid);
 
 }
 
