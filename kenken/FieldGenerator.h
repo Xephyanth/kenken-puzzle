@@ -16,6 +16,8 @@ public:
 
     Board generateField(int size) const;
 
+    int getDifficulty() const;
+
 private:
     // Сложность пазла
     int difficulty_ = 0;

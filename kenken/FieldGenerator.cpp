@@ -1,6 +1,9 @@
 #include "FieldGenerator.h"
 
 #include <stdexcept>
+#include <random>
+
+#include <iostream>
 
 FieldGenerator::FieldGenerator(int difficulty) : difficulty_(difficulty) {
     if (difficulty < 1 || difficulty > 3) {
@@ -20,6 +23,10 @@ Board FieldGenerator::generateField(int size) const {
 
     // ВОзвращаем заполненную доску
     return board;
+}
+
+int FieldGenerator::getDifficulty() const {
+    return 0;
 }
 
 void FieldGenerator::fillNumbers(Board& board) const {
@@ -45,8 +52,26 @@ void FieldGenerator::fillNumbers(Board& board) const {
         }
     }
 
+    // Инициализируем генератор случайных чисел
+    std::random_device rd;
+    std::mt19937 g_mt(rd());
+
+    // Перемешиваем строки
+    std::shuffle(grid.begin(), grid.end(), g_mt);
+    // Перемешиваем столбцы
+    // Поворачиваем сетку на 90 градусов по часовой стрелке
+    std::vector<std::vector<int>> rotated_grid(brd_size, std::vector<int>(brd_size));
+    for (int i = 0; i < brd_size; ++i) {
+        for (int j = 0; j < brd_size; ++j) {
+            rotated_grid[i][j] = grid[brd_size - 1 - j][i];
+        }
+    }
+
+    // Перемешиваем строки повернутой сетки (бывшие столбцы)
+    std::shuffle(rotated_grid.begin(), rotated_grid.end(), g_mt);
+
     // Обмениваем содержимое board с grid
-    board.swap(grid);
+    board.swap(rotated_grid);
 
 }
 

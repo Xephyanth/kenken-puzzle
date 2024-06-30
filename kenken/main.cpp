@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2024 Egor M.
- * Все права защищены
+ * Copyright (c) 2024 Xephyanth (Egor M.)
+ * All rights reserved
  */
 
 #include "Board.h"
