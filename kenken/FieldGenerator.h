@@ -30,5 +30,4 @@ private:
     void fillNumbers(Board& board) const;
     // Разбивает поле на отдельные блоки
     void createCages(Board& board) const;
-
 };

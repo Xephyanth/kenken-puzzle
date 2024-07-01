@@ -3,8 +3,6 @@
 #include <stdexcept>
 #include <random>
 
-#include <iostream>
-
 FieldGenerator::FieldGenerator(int difficulty) : difficulty_(difficulty) {
     if (difficulty < 1 || difficulty > 3) {
         throw std::invalid_argument("Difficulty error"); // Не забудь придумать
@@ -33,21 +31,21 @@ void FieldGenerator::fillNumbers(Board& board) const {
     // Получаем размер поля
     const int brd_size = board.getSize();
 
-    std::vector<std::vector<int>> grid(brd_size, std::vector<int>(brd_size, 0));
+    std::vector<std::vector<Cell>> grid(brd_size, std::vector<Cell>(brd_size, board.createCell()));
 
     // Заполняем первый ряд
-    std::vector<int>& first_row = grid[0];
+    std::vector<Cell>& first_row = grid[0];
     for (int i = 0; i < brd_size; ++i) {
-        first_row[i] = i + 1;
+        first_row[i].board_value = i + 1;
     }
 
     // Заполняем остальные ряды со смещением
     for (int row = 1; row < brd_size; ++row) {
         for (int col = 0; col < brd_size; ++col) {
-            grid[row][col] = (grid[0][col] + row) % brd_size;
+            grid[row][col].board_value = (grid[0][col].board_value + row) % brd_size;
 
-            if (grid[row][col] == 0) {
-                grid[row][col] = brd_size;
+            if (grid[row][col].board_value == 0) {
+                grid[row][col].board_value = brd_size;
             }
         }
     }
@@ -60,7 +58,7 @@ void FieldGenerator::fillNumbers(Board& board) const {
     std::shuffle(grid.begin(), grid.end(), g_mt);
     // Перемешиваем столбцы
     // Поворачиваем сетку на 90 градусов по часовой стрелке
-    std::vector<std::vector<int>> rotated_grid(brd_size, std::vector<int>(brd_size));
+    std::vector<std::vector<Cell>> rotated_grid(brd_size, std::vector<Cell>(brd_size, board.createCell()));
     for (int i = 0; i < brd_size; ++i) {
         for (int j = 0; j < brd_size; ++j) {
             rotated_grid[i][j] = grid[brd_size - 1 - j][i];
