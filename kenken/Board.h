@@ -4,17 +4,19 @@
 
 // Структура для представления ячеек сетки
 struct Cell {
+    Cell() = default;
+
     // Значение ячейки при генерации пазла
-    int board_value;
+    int board_value = 0;
     // Значение пользователя во время решения головоломки
-    int user_value;
+    int user_value =  0;
 
     // id группы, к которой принадлежит ячейка
-    int group_id;
+    int group_id = 0;
     // Целевое значение в группе
-    int target_value;
+    int target_value = 0;
     // Арифметическая операция в группе
-    char operation;
+    char operation = '+';
 };
 
 /*
@@ -31,9 +33,6 @@ public:
     /*
     * Вспомогательные функции
     */
-
-    // Вспомогательная функция для инициализации полей структуры
-    Cell createCell();
 
     void swap(std::vector<std::vector<Cell>>& other);
 

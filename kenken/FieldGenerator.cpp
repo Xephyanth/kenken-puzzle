@@ -31,7 +31,7 @@ void FieldGenerator::fillNumbers(Board& board) const {
     // Получаем размер поля
     const int brd_size = board.getSize();
 
-    std::vector<std::vector<Cell>> grid(brd_size, std::vector<Cell>(brd_size, board.createCell()));
+    std::vector<std::vector<Cell>> grid(brd_size, std::vector<Cell>(brd_size));
 
     // Заполняем первый ряд
     std::vector<Cell>& first_row = grid[0];
@@ -58,7 +58,7 @@ void FieldGenerator::fillNumbers(Board& board) const {
     std::shuffle(grid.begin(), grid.end(), g_mt);
     // Перемешиваем столбцы
     // Поворачиваем сетку на 90 градусов по часовой стрелке
-    std::vector<std::vector<Cell>> rotated_grid(brd_size, std::vector<Cell>(brd_size, board.createCell()));
+    std::vector<std::vector<Cell>> rotated_grid(brd_size, std::vector<Cell>(brd_size));
     for (int i = 0; i < brd_size; ++i) {
         for (int j = 0; j < brd_size; ++j) {
             rotated_grid[i][j] = grid[brd_size - 1 - j][i];

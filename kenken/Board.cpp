@@ -8,22 +8,11 @@
 
 // Конструктор с параметром по умолчанию
 // Устанавливает минимальные параметры, которые необходимы для корректной генерации головоломки
-Board::Board(int size = 3) : b_size_(size), board_(size, std::vector<Cell>(size, createCell())) {}
+Board::Board(int size = 3) : b_size_(size), board_(size, std::vector<Cell>(size)) {}
 
 /*
 * Методы
 */
-
-Cell Board::createCell() {
-    Cell cell{};
-
-    cell.board_value = 0;
-    cell.user_value = 0;
-    cell.group_id = 0;
-    cell.target_value = 0;
-
-    return cell;
-}
 
 void Board::swap(std::vector<std::vector<Cell>>& other) {
     board_.swap(other);
