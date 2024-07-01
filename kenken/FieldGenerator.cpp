@@ -14,17 +14,17 @@ Board FieldGenerator::generateField(int size) const {
         throw std::invalid_argument("Field size error"); // Не забудь придумать
     }
 
-    // Результирующее поле
-    Board board(size);
+    Board board(size);      // Результирующее поле
 
-    fillNumbers(board);
+    fillNumbers(board);     // Заполнение сетки цифрмами по правилам игры
+    
+    createGroups(board);    // Создание объединенных групп
 
-    // ВОзвращаем заполненную доску
-    return board;
+    return board;           // Возвращаем заполненную доску
 }
 
 int FieldGenerator::getDifficulty() const {
-    return 0;
+    return difficulty_;
 }
 
 void FieldGenerator::fillNumbers(Board& board) const {
@@ -70,8 +70,8 @@ void FieldGenerator::fillNumbers(Board& board) const {
 
     // Обмениваем содержимое board с grid
     board.swap(rotated_grid);
-
 }
 
-void FieldGenerator::createCages(Board& board) const {
+void FieldGenerator::createGroups(Board& board) const {
+
 }
